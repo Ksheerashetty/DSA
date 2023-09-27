@@ -30,8 +30,16 @@ public class Solution {
 
     static int largestElement(int[] arr, int n) {
         // Write your code here.
-        Arrays.sort(arr);
-        return arr[n-1];
-
+        //Time complexity : O(nlogn)
+        // Arrays.sort(arr);
+        // return arr[n-1];
+        //Optimal code with O(n)
+        int max=arr[0];
+        for(int i=1;i<n;i++){
+            if(max<arr[i]){
+                max=arr[i];
+            }
+        }
+        return max;
     }
 }
