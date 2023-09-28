@@ -24,14 +24,35 @@ import java.util.*;
 import java.util.Arrays;
 public class SecondLargestSmallest {
     public static int[] getSecondOrderElements(int n, int []a) {
-        // Write your code here.
-        int[] res=new int[2];
-        if(n<2){
-            Arrays.fill(res,-1);
+        // 1.Brute force
+        // int[] res=new int[2];
+        // if(n<2){
+        //     Arrays.fill(res,-1);
+        //     return res;
+        // }
+        // Arrays.sort(a);
+        // res[1]=a[1];
+        // res[0]=a[n-2]; // this might not be optimal if we've array like 1123344 we'll be getting answer as 
+        //4 and 1 which is clearly wrong we should be actually getting 3 and 2
+        //A better approach with O(n)
+         int large=Integer.MIN_VALUE,sl=Integer.MIN_VALUE;
+         int small=Integer.MAX_VALUE,ss=Integer.MAX_VALUE;
+        for(int i=0;i<n;i++){
+            if(a[i]>large){
+                 sl=large;
+                large=a[i];   
+            }else if(a[i]!=large && a[i]>sl){
+                sl=a[i];
+            }
+             if(a[i]<small){
+                 ss=small;
+                small=a[i];   
+            }else if(a[i]!=small && a[i]<ss){
+                ss=a[i];
+            }
         }
-        Arrays.sort(a);
-        res[1]=a[1];
-        res[0]=a[n-2];
+        res[0]=sl;
+        res[1]=ss;
         return res;
     }
 }
